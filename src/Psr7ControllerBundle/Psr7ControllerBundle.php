@@ -6,4 +6,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class Psr7ControllerBundle extends Bundle
 {
+    public function __construct()
+    {
+    }
+
 }

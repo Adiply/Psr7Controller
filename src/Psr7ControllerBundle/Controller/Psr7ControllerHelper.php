@@ -1,6 +1,6 @@
 <?php
 
-namespace Psr7ControllerBundle;
+namespace Psr7ControllerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Zend\Diactoros\Response;
