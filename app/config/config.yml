@@ -9,9 +9,6 @@ imports:
 parameters:
     locale: en
 
-psr7controller:
-    bouncer_location: 'c3.adip.ly'
-
 framework:
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }
