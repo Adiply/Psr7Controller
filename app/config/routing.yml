@@ -1,0 +1,4 @@
+psr7_controller:
+    resource: "@Psr7ControllerBundle/Controller/"
+    prefix:   /
+
