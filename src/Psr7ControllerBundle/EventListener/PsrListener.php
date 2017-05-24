@@ -2,7 +2,7 @@
 
 namespace Psr7ControllerBundle\EventListener;
 
-use Psr7ControllerBundle\PsrAuthenticatedControllerInterface;
+use Psr7ControllerBundle\Controller\PsrAuthenticatedControllerInterface;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
@@ -12,6 +12,7 @@ use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
 use Psr7ControllerBundle\Exception\InvalidContentTypeException;
 use Psr7ControllerBundle\Exception\InvalidRequestTypeException;
+use Psr7ControllerBundle\Exception\InvalidDataException;
 
 class PsrListener
 {
@@ -39,7 +40,7 @@ class PsrListener
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
         $exception = $event->getException();
-        if($exception instanceof InvalidRequestTypeException || $exception instanceof InvalidContentTypeException){
+        if($exception instanceof InvalidRequestTypeException || $exception instanceof InvalidContentTypeException || $exception instanceof InvalidDataException){
             $response = new Response('php://memory', 400, ['Content-Type' => 'application/json']);
             $response->getBody()->write(json_encode(['status' => 0, 'message' => $exception->getMessage()]));
             $httpFoundationFactory = new HttpFoundationFactory();
