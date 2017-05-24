@@ -1,6 +1,6 @@
 <?php
 
-namespace Adiply\Psr7ControllerBundle\Controller;
+namespace Adiply\Psr7Controller\Controller;
 
 interface PsrAuthenticatedControllerInterface
 {

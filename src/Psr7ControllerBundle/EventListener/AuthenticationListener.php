@@ -1,10 +1,10 @@
 <?php
 
-namespace Adiply\Psr7ControllerBundle\EventListener;
+namespace Adiply\Psr7Controller\EventListener;
 
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Adiply\Psr7ControllerBundle\Controller\PsrAuthenticatedControllerInterface;
+use Adiply\Psr7Controller\Controller\PsrAuthenticatedControllerInterface;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use GuzzleHttp\Client;
 use Zend\Diactoros\ServerRequest;
