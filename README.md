@@ -1,4 +1,4 @@
-.checkout
+Psr7Controller
 =========
 
-A Symfony project created on May 24, 2017, 11:22 am.
+A helper class for adding Psr7-compliant messaging directly to a controller.
