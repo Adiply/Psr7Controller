@@ -1,6 +1,6 @@
 <?php
 
-namespace Adiply\Psr7Controller\Exception;
+namespace Psr7ControllerBundle\Exception;
 /**
  * Class InvalidRequestTypeException
  * @package AppBundle\Exception

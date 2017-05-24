@@ -1,6 +1,6 @@
 <?php
 
-namespace Adiply\Psr7Controller;
+namespace Psr7ControllerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

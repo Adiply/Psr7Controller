@@ -1,8 +1,8 @@
 <?php
 
-namespace Adiply\Psr7Controller\EventListener;
+namespace Psr7ControllerBundle\EventListener;
 
-use Adiply\Psr7Controller\Controller\PsrAuthenticatedControllerInterface;
+use Psr7ControllerBundle\PsrAuthenticatedControllerInterface;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
@@ -10,8 +10,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
-use Adiply\Psr7Controller\Exception\InvalidContentTypeException;
-use Adiply\Psr7Controller\Exception\InvalidRequestTypeException;
+use Psr7ControllerBundle\Exception\InvalidContentTypeException;
+use Psr7ControllerBundle\Exception\InvalidRequestTypeException;
 
 class PsrListener
 {

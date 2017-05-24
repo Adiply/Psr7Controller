@@ -5,7 +5,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Adiply\\Psr7Controller\\": "src"
+            "Psr7ControllerBundle\\":"src/Psr7ControllerBundle"
         },
         "classmap": [
             "app/AppKernel.php",
