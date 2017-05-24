@@ -1,5 +1,6 @@
 {
     "name": "adiply/psr7controller",
+    "description": "PSR-7 Helper class for controllers",
     "license": "proprietary",
     "type": "project",
     "autoload": {
