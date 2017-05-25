@@ -2,6 +2,7 @@
 
 namespace Psr7ControllerBundle\Controller;
 
+use Psr7ControllerBundle\Helper\RestResponseHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Zend\Diactoros\Response;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
