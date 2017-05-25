@@ -7,8 +7,8 @@ services:
     tags:
       - { name: kernel.event_listener, event: kernel.controller, method: onKernelController}
       - { name: kernel.event_listener, event: kernel.exception, method: onKernelException}
-  zone.authentication_listener:
-          class: Psr7ControllerBundle\EventListener\AuthenticationListener
-          arguments: ['%bouncer_location%']
-          tags:
-            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController}
+  authentication_listener:
+    class: Psr7ControllerBundle\EventListener\AuthenticationListener
+    arguments: ['%bouncer_location%', '%bouncer_version%']
+    tags:
+      - { name: kernel.event_listener, event: kernel.controller, method: onKernelController}

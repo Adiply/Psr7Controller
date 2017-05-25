@@ -16,13 +16,8 @@ abstract class Psr7ControllerHelper extends Controller implements PsrAuthenticat
         return $httpFoundationFactory->createResponse($response);
     }
 
-    protected function psr7Rest($data)
+    protected function psr7Rest(RestResponseHelper $helper)
     {
-        return $this->psr7Json(['data' => $data]);
-    }
-
-    protected function psr7RestError($messages)
-    {
-        return $this->psr7Json(['messages' => $messages], 400);
+        return $this->psr7Json($helper->render(), $helper->getStatus());
     }
 }

@@ -2,20 +2,22 @@
 
 namespace Psr7ControllerBundle\EventListener;
 
+use Psr7ControllerBundle\Exception\InvalidRequestException;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Psr7ControllerBundle\PsrAuthenticatedControllerInterface;
+use Psr7ControllerBundle\Controller\PsrAuthenticatedControllerInterface;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use GuzzleHttp\Client;
 use Zend\Diactoros\ServerRequest;
 
 class AuthenticationListener
 {
-    public function __construct(string $bouncer_location)
+    public function __construct(string $bouncer_location, string $bouncer_version)
     {
         $this->bouncer_location = $bouncer_location;
+        $this->bouncer_version = $bouncer_version;
     }
-    public function onKernelController(FilterControllerEvent $event)
+    public function onKernelControllerAuthenticate(FilterControllerEvent $event)
     {
         $controller = $event->getController();
         if(!is_array($controller)){
@@ -26,10 +28,18 @@ class AuthenticationListener
             $psr7Factory = new DiactorosFactory();
             /** @var ServerRequest $psr7Request */
             $psr7Request = $psr7Factory->createRequest($request);
-            $user = $psr7Request->getHeader('user');
-            $key = $psr7Request->getHeader('key');
+
+            $headers = $psr7Request->getHeaders();
+
+            if(!isset($headers['user'], $headers['key']))
+            {
+                throw new InvalidRequestException("Authorization required.");
+            }
+
+            $user = $headers['user'];
+            $key = $headers['key'];
             $client = new Client();
-            $response = $client->get($this->bouncer_location . '/1/checkPermission', [
+            $response = $client->get($this->bouncer_location . '/'.$this->bouncer_version.'/checkPermission', [
                 'headers'=>[
                     'Content-Type'=>'application/json',
                     'User'=>$user,
