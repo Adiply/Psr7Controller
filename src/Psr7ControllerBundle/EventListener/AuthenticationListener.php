@@ -12,10 +12,10 @@ use Zend\Diactoros\ServerRequest;
 
 class AuthenticationListener
 {
-    public function __construct(string $bouncer_location, string $bouncer_version)
+    public function __construct()
     {
-        $this->bouncer_location = $bouncer_location;
-        $this->bouncer_version = $bouncer_version;
+        //$this->bouncer_location = $bouncer_location;
+        //$this->bouncer_version = $bouncer_version;
     }
     public function onKernelControllerAuthenticate(FilterControllerEvent $event)
     {
@@ -39,7 +39,7 @@ class AuthenticationListener
             $user = $headers['user'];
             $key = $headers['key'];
             $client = new Client();
-            $response = $client->get($this->bouncer_location . '/'.$this->bouncer_version.'/checkPermission', [
+            $response = $client->get($this->getContainer()->get('bouncer_location') . '/'.$this->getContainer()->get('bouncer_version').'/checkPermission', [
                 'headers'=>[
                     'Content-Type'=>'application/json',
                     'User'=>$user,
@@ -51,7 +51,7 @@ class AuthenticationListener
             }
             $resp = json_decode($response->getBody());
             if(!isset($resp->status) || $resp->status!=1){
-                throw new Exception("Sorry pal, you ain't on the list.");
+                throw new InvalidRequestException("Sorry pal, you ain't on the list.");
             }
         }
     }

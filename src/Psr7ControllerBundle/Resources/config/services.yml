@@ -2,13 +2,14 @@ services:
 #    psr7_controller.example:
 #        class: Psr7ControllerHelperBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
-  app.psr.formatting_listener:
-    class: Psr7ControllerBundle\EventListener\PsrListener
-    tags:
-      - { name: kernel.event_listener, event: kernel.controller, method: onKernelController}
-      - { name: kernel.event_listener, event: kernel.exception, method: onKernelException}
-  authentication_listener:
-    class: Psr7ControllerBundle\EventListener\AuthenticationListener
-    arguments: ['%bouncer_location%', '%bouncer_version%']
-    tags:
-      - { name: kernel.event_listener, event: kernel.controller, method: onKernelController}
+    app.psr.formatting_listener:
+        class: Psr7ControllerBundle\EventListener\PsrListener
+        tags:
+          - { name: kernel.event_listener, event: kernel.controller, method: onKernelController}
+          - { name: kernel.event_listener, event: kernel.exception, method: onKernelException}
+
+    authentication_listener:
+        class: Psr7ControllerBundle\EventListener\AuthenticationListener
+        #arguments: ['%bouncer_location%', '%bouncer_version%']
+        tags:
+          - { name: kernel.event_listener, event: kernel.controller, method: onKernelController}

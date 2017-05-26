@@ -6,11 +6,7 @@
     "autoload": {
         "psr-4": {
             "Psr7ControllerBundle\\":"src/Psr7ControllerBundle"
-        },
-        "classmap": [
-            "app/AppKernel.php",
-            "app/AppCache.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -34,6 +30,7 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.2.*",
+        "symfony/event-dispatcher": "^2.0.7",
         "twig/twig": "^1.0||^2.0",
         "zendframework/zend-diactoros": "^1.4"
     },
