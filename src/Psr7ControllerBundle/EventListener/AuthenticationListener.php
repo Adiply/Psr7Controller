@@ -12,12 +12,12 @@ use Zend\Diactoros\ServerRequest;
 
 class AuthenticationListener
 {
-    public function __construct()
+    public function __construct($bouncer_location, $bouncer_version)
     {
-        //$this->bouncer_location = $bouncer_location;
-        //$this->bouncer_version = $bouncer_version;
+        $this->bouncer_location = $bouncer_location;
+        $this->bouncer_version = $bouncer_version;
     }
-    public function onKernelControllerAuthenticate(FilterControllerEvent $event)
+    public function onKernelController(FilterControllerEvent $event)
     {
         $controller = $event->getController();
         if(!is_array($controller)){
@@ -39,7 +39,7 @@ class AuthenticationListener
             $user = $headers['user'];
             $key = $headers['key'];
             $client = new Client();
-            $response = $client->get($this->getContainer()->get('bouncer_location') . '/'.$this->getContainer()->get('bouncer_version').'/checkPermission', [
+            $response = $client->get($this->bouncer_location . '/'.$this->bouncer_version.'/checkPermission', [
                 'headers'=>[
                     'Content-Type'=>'application/json',
                     'User'=>$user,
