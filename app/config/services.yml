@@ -9,14 +9,3 @@ services:
     #service_name:
     #    class: AppBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
-    app.psr.formatting_listener:
-        class: Psr7ControllerBundle\EventListener\PsrListener
-        tags:
-          - { name: kernel.event_listener, event: kernel.controller, method: onKernelController}
-          - { name: kernel.event_listener, event: kernel.exception, method: onKernelException}
-
-    authentication_listener:
-        class: Psr7ControllerBundle\EventListener\AuthenticationListener
-        arguments: ['%bouncer_location%', '%bouncer_version%']
-        tags:
-          - { name: kernel.event_listener, event: kernel.controller, method: onKernelController}
